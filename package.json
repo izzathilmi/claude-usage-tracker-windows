@@ -1,0 +1,48 @@
+{
+  "name": "claude-usage-tracker-windows",
+  "version": "0.1.0",
+  "description": "Windows system tray app showing real-time Claude AI usage — session & weekly limits",
+  "main": "src/main.js",
+  "author": "Izzat",
+  "license": "MIT",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder --win nsis",
+    "postinstall": "electron-rebuild -f -w keytar"
+  },
+  "dependencies": {
+    "auto-launch": "^5.0.6",
+    "electron-store": "^8.2.0",
+    "keytar": "^7.9.0",
+    "node-fetch": "^2.7.0"
+  },
+  "devDependencies": {
+    "electron": "^29.4.6",
+    "electron-builder": "^24.13.3",
+    "electron-rebuild": "^3.2.9"
+  },
+  "build": {
+    "appId": "com.aurora.claude-usage-tracker",
+    "productName": "Claude Usage Tracker",
+    "win": {
+      "icon": "assets/icon.png",
+      "target": "nsis"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": false
+    },
+    "extraResources": [
+      {
+        "from": "assets/",
+        "to": "assets/"
+      }
+    ],
+    "files": [
+      "src/**/*",
+      "assets/**/*",
+      "package.json"
+    ]
+  }
+}

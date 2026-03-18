@@ -1,0 +1,454 @@
+/* ============================================================
+   Claude Usage Tracker — style.css
+   ============================================================ */
+
+:root {
+  --color-bg-app:         rgba(13, 13, 20, 0.88);
+  --color-bg-header:      rgba(8, 8, 14, 0.72);
+  --color-bg-footer:      rgba(8, 8, 14, 0.60);
+  --color-bg-settings:    rgba(10, 10, 18, 0.97);
+  --color-bg-track:       rgba(255, 255, 255, 0.08);
+  --color-bg-block:       rgba(255, 255, 255, 0.03);
+  --color-bg-select:      rgba(255, 255, 255, 0.06);
+
+  --color-border:         rgba(255, 255, 255, 0.10);
+  --color-border-header:  rgba(255, 255, 255, 0.07);
+  --color-border-focus:   rgba(0, 212, 170, 0.50);
+
+  --color-text-primary:   #e8eaf0;
+  --color-text-secondary: rgba(200, 204, 218, 0.65);
+  --color-text-muted:     rgba(160, 164, 180, 0.50);
+
+  --color-accent-green:   #00d4aa;
+  --color-accent-yellow:  #f5a623;
+  --color-accent-orange:  #e8621a;
+  --color-accent-red:     #e8341a;
+
+  --color-dot-green:      #00d4aa;
+  --color-dot-yellow:     #f5a623;
+  --color-dot-orange:     #ff8c42;
+  --color-dot-red:        #ff6b6b;
+
+  --radius-app:           16px;
+  --radius-btn:           8px;
+  --radius-track:         4px;
+
+  --transition-fast:      0.15s ease;
+  --transition-slide:     0.28s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-bar:       0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ── Reset & base ─────────────────────────────────────────── */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 320px;
+  height: 440px;
+  background: transparent;
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  font-size: 13px;
+  color: var(--color-text-primary);
+  overflow: hidden;
+  user-select: none;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+/* ── App shell ────────────────────────────────────────────── */
+
+#app {
+  position: relative;
+  width: 320px;
+  height: 100vh;
+  background: var(--color-bg-app);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-app);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+#app.pulsing {
+  animation: pulse-app 2s ease-in-out infinite;
+}
+
+@keyframes pulse-app {
+  0%,
+  100% { box-shadow: 0 0 0 rgba(0, 212, 170, 0); }
+  50%  { box-shadow: 0 0 20px rgba(0, 212, 170, 0.30); }
+}
+
+/* ── Header ───────────────────────────────────────────────── */
+
+header {
+  -webkit-app-region: drag;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 14px;
+  background: var(--color-bg-header);
+  border-bottom: 1px solid var(--color-border-header);
+  flex-shrink: 0;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.header-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  background: rgba(0, 212, 170, 0.10);
+  border: 1px solid rgba(0, 212, 170, 0.20);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.header-title {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  color: var(--color-text-primary);
+}
+
+.header-right {
+  -webkit-app-region: no-drag;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.header-right button {
+  -webkit-app-region: no-drag;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 6px;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  transition: background var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast);
+  padding: 0;
+}
+
+.header-right button:hover {
+  background: rgba(255, 255, 255, 0.10);
+  color: var(--color-text-primary);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+#close-btn:hover {
+  background: rgba(232, 52, 26, 0.18);
+  color: var(--color-accent-red);
+  border-color: rgba(232, 52, 26, 0.30);
+}
+
+/* ── Main content ─────────────────────────────────────────── */
+
+main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 14px 14px 10px;
+  overflow: hidden;
+}
+
+/* ── Usage blocks ─────────────────────────────────────────── */
+
+.usage-block {
+  background: var(--color-bg-block);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.label-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.usage-name {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  letter-spacing: 0.2px;
+}
+
+.usage-sub {
+  font-size: 10px;
+  font-weight: 400;
+  color: var(--color-text-muted);
+  margin-left: 4px;
+}
+
+.usage-pct {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--color-accent-green);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.3px;
+}
+
+/* ── Progress track & fill ────────────────────────────────── */
+
+.progress-track {
+  height: 8px;
+  background: var(--color-bg-track);
+  border-radius: var(--radius-track);
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  border-radius: var(--radius-track);
+  transition: width var(--transition-bar);
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(90deg, var(--color-accent-green), #00ffcc);
+}
+
+/* Shimmer overlay */
+.progress-fill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -60%;
+  width: 40%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.35) 50%,
+    transparent 100%
+  );
+  animation: shimmer 2.2s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0%   { left: -60%; }
+  100% { left: 120%; }
+}
+
+/* ── Progress colour variants ─────────────────────────────── */
+
+.bar-green {
+  background: linear-gradient(90deg, #00d4aa, #00ffcc);
+}
+
+.bar-yellow {
+  background: linear-gradient(90deg, #f5a623, #ffd96a);
+}
+
+.bar-orange {
+  background: linear-gradient(90deg, #e8621a, #ff8c42);
+}
+
+.bar-red {
+  background: linear-gradient(90deg, #e8341a, #ff6b6b);
+}
+
+/* ── Reset row / countdown ────────────────────────────────── */
+
+.reset-row {
+  font-size: 10px;
+  color: var(--color-text-muted);
+}
+
+.countdown {
+  font-family: 'Cascadia Code', 'Consolas', 'Courier New', monospace;
+  font-size: 10px;
+  color: var(--color-text-secondary);
+  letter-spacing: 0.5px;
+}
+
+/* ── Status row ───────────────────────────────────────────── */
+
+.status-row {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: auto;
+  padding: 4px 2px 0;
+}
+
+#last-updated {
+  font-size: 10px;
+  color: var(--color-text-muted);
+}
+
+/* ── Status dots ──────────────────────────────────────────── */
+
+.dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  animation: blink 2.4s ease-in-out infinite;
+}
+
+.dot-green  { background: var(--color-dot-green); }
+.dot-yellow { background: var(--color-dot-yellow); }
+.dot-orange { background: var(--color-dot-orange); }
+.dot-red    { background: var(--color-dot-red); }
+
+@keyframes blink {
+  0%,
+  100% { opacity: 1; }
+  50%  { opacity: 0.35; }
+}
+
+/* ── Footer ───────────────────────────────────────────────── */
+
+footer {
+  flex-shrink: 0;
+  padding: 10px 14px 12px;
+  background: var(--color-bg-footer);
+  border-top: 1px solid var(--color-border-header);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#settings-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  border-radius: var(--radius-btn);
+  color: var(--color-text-secondary);
+  font-size: 12px;
+  font-family: inherit;
+  padding: 6px 18px;
+  cursor: pointer;
+  transition: background var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast);
+  letter-spacing: 0.2px;
+}
+
+#settings-btn:hover {
+  background: rgba(255, 255, 255, 0.09);
+  color: var(--color-text-primary);
+  border-color: rgba(255, 255, 255, 0.18);
+}
+
+/* ── Settings panel ───────────────────────────────────────── */
+
+#settings-panel {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--color-bg-settings);
+  border-top: 1px solid var(--color-border);
+  border-radius: 0 0 var(--radius-app) var(--radius-app);
+  padding: 16px 16px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  transform: translateY(0%);
+  transition: transform var(--transition-slide);
+  z-index: 10;
+}
+
+#settings-panel.hidden {
+  transform: translateY(100%);
+}
+
+.settings-header {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.settings-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.settings-row label {
+  font-size: 12px;
+  color: var(--color-text-secondary);
+  flex: 1;
+}
+
+/* Select */
+#interval-select {
+  background: var(--color-bg-select);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  border-radius: 6px;
+  color: var(--color-text-primary);
+  font-size: 12px;
+  font-family: inherit;
+  padding: 4px 8px;
+  cursor: pointer;
+  outline: none;
+  transition: border-color var(--transition-fast);
+  min-width: 72px;
+}
+
+#interval-select:focus {
+  border-color: var(--color-border-focus);
+}
+
+#interval-select option {
+  background: #141420;
+  color: var(--color-text-primary);
+}
+
+/* Checkbox */
+#autolaunch-check {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--color-accent-green);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+/* Danger button */
+.btn-danger {
+  background: rgba(232, 52, 26, 0.12);
+  border: 1px solid rgba(232, 52, 26, 0.30);
+  border-radius: var(--radius-btn);
+  color: #ff6b6b;
+  font-size: 12px;
+  font-family: inherit;
+  padding: 7px 14px;
+  cursor: pointer;
+  transition: background var(--transition-fast), border-color var(--transition-fast), color var(--transition-fast);
+  align-self: flex-start;
+  letter-spacing: 0.2px;
+}
+
+.btn-danger:hover {
+  background: rgba(232, 52, 26, 0.22);
+  border-color: rgba(232, 52, 26, 0.55);
+  color: #ffaaaa;
+}

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Claude Usage Tracker</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="app">
+    <header>
+      <div class="header-left">
+        <div class="header-icon">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="10" cy="10" r="9" stroke="url(#iconGrad)" stroke-width="2"/>
+            <circle cx="10" cy="10" r="4" fill="url(#iconGrad)"/>
+            <defs>
+              <linearGradient id="iconGrad" x1="0" y1="0" x2="20" y2="20" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#00d4aa"/>
+                <stop offset="100%" stop-color="#00ffcc"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+        <span class="header-title">Claude Usage</span>
+      </div>
+      <div class="header-right">
+        <button id="refresh-btn" title="Refresh">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12.5 2A6.5 6.5 0 1 0 13 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M10.5 2H12.5V4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <button id="close-btn" title="Close">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1 1L11 11M11 1L1 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <!-- Session block -->
+      <section class="usage-block" id="session-block">
+        <div class="label-row">
+          <span class="usage-name">Session <span class="usage-sub">(5h window)</span></span>
+          <span class="usage-pct" id="session-pct">--%</span>
+        </div>
+        <div class="progress-track">
+          <div class="progress-fill" id="session-bar" style="width:0%"></div>
+        </div>
+        <div class="reset-row">Resets in <span class="countdown" id="session-countdown">--:--:--</span></div>
+      </section>
+
+      <!-- Weekly block -->
+      <section class="usage-block" id="weekly-block">
+        <div class="label-row">
+          <span class="usage-name">Weekly <span class="usage-sub">(7d window)</span></span>
+          <span class="usage-pct" id="weekly-pct">--%</span>
+        </div>
+        <div class="progress-track">
+          <div class="progress-fill" id="weekly-bar" style="width:0%"></div>
+        </div>
+        <div class="reset-row">Resets in <span class="countdown" id="weekly-countdown">--:--:--</span></div>
+      </section>
+
+      <!-- Status row -->
+      <div class="status-row">
+        <span id="status-dot" class="dot dot-green"></span>
+        <span id="last-updated">Never updated</span>
+      </div>
+    </main>
+
+    <footer>
+      <button id="settings-btn">&#9881; Settings</button>
+    </footer>
+
+    <!-- Settings panel -->
+    <div id="settings-panel" class="hidden">
+      <div class="settings-header">Settings</div>
+      <div class="settings-row">
+        <label for="interval-select">Refresh every</label>
+        <select id="interval-select">
+          <option value="30">30s</option>
+          <option value="60" selected>60s</option>
+          <option value="120">2 min</option>
+          <option value="300">5 min</option>
+        </select>
+      </div>
+      <div class="settings-row">
+        <label for="autolaunch-check">Launch at startup</label>
+        <input type="checkbox" id="autolaunch-check" />
+      </div>
+      <button id="logout-btn" class="btn-danger">Logout</button>
+    </div>
+  </div>
+
+  <script src="renderer.js"></script>
+</body>
+</html>

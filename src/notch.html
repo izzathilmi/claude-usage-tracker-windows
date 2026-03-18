@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Claude Notch</title>
+  <link rel="stylesheet" href="notch-style.css" />
+</head>
+<body>
+  <div id="notch">
+
+    <!-- Collapsed content -->
+    <div id="pill-content">
+      <span id="pill-dot" class="pill-dot dot-green"></span>
+      <span id="pill-text">-- · --</span>
+    </div>
+
+    <!-- Expanded content (fades in when pill grows) -->
+    <div id="expanded-content">
+      <div class="exp-row">
+        <span class="exp-name">Session</span>
+        <div class="exp-track">
+          <div class="exp-fill" id="panel-session-bar" style="width:0%"></div>
+        </div>
+        <span class="exp-pct" id="panel-session-pct">--%</span>
+        <span class="exp-cd" id="panel-session-countdown">--:--:--</span>
+      </div>
+      <div class="exp-row">
+        <span class="exp-name">Weekly</span>
+        <div class="exp-track">
+          <div class="exp-fill" id="panel-weekly-bar" style="width:0%"></div>
+        </div>
+        <span class="exp-pct" id="panel-weekly-pct">--%</span>
+        <span class="exp-cd" id="panel-weekly-countdown">--:--:--</span>
+      </div>
+    </div>
+
+  </div>
+  <script src="notch-renderer.js"></script>
+</body>
+</html>
