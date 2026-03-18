@@ -17,9 +17,17 @@ Inspired by [Claude Usage Tracker for macOS](https://github.com/hamed-elfayome/C
 
 ---
 
-## Screenshot
+## Screenshots
 
-> *(Coming soon — add after first run)*
+### Notch Overlay (top of screen)
+
+| Collapsed | Expanded (hover) |
+|-----------|-----------------|
+| ![Notch collapsed](assets/screenshots/notch-collapsed.png) | ![Notch expanded](assets/screenshots/notch-expanded.png) |
+
+### Tray Popup
+
+![Tray popup](assets/screenshots/tray-popup.png)
 
 ---
 
@@ -34,7 +42,7 @@ Download `Claude Usage Tracker Setup.exe` from the [Releases](../../releases) pa
 **Prerequisites:** Node.js 18+, Python 3 (for native module build), Visual Studio Build Tools
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/claude-usage-tracker-windows
+git clone https://github.com/izzathilmi/claude-usage-tracker-windows
 cd claude-usage-tracker-windows
 npm install
 npm start
